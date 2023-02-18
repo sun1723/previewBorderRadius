@@ -68,8 +68,8 @@ function App() {
 
   return (
     <div className={styles.App}>
-      <header className={styles.App_header}>
-          <div className={styles.container} onMouseMove={handleMouseMove} onMouseDown={handleOnClick} onMouseUp={handleMouseUp}>
+      <header className={styles.header}>
+          <div className={styles.container} onMouseMove={handleMouseMove} onMouseDown={handleOnClick} onMouseUp={handleMouseUp} style={{borderRadius:`${topPos.left}px ${rightPos.top}px ${bottomPos.left}px ${leftPos.top}px` }}>
               <Box startPos={leftPos} side="left" id='left' setSelected={setSelected} selected={selected} position={position}/>
               <Box startPos={rightPos} side="right" id='right' setSelected={setSelected} selected={selected} position={position}/>
               <Box  startPos={topPos} side="top" id='top' setSelected={setSelected} selected={selected} position={position}/>
