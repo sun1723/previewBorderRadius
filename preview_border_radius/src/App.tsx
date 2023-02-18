@@ -1,10 +1,10 @@
-import { SetStateAction, useState} from 'react'
+import { useState} from 'react'
 import styles from './App.module.css'
 import Box from "./Box";
 
 function App() {
     const [selected, setSelected] = useState('');
-    const [position, setPosition] = useState({});
+    const [position, setPosition] = useState({left:0,top:0});
     const [isDragging, setIsDragging] = useState<boolean>(false);
     const [leftPos, setLeftPos] = useState({left: 0,top: 10});
     const [rightPos, setRightPos] = useState({left: 400,top: 10});
@@ -13,7 +13,6 @@ function App() {
 
     const handleMouseMove = (event: React.MouseEvent<HTMLDivElement>) => {
         if (isDragging && selected) {
-            // const {width, height} = event.currentTarget.getBoundingClientRect();
             const {
                 left: containerLeft,
                 top: containerTop,
@@ -45,7 +44,7 @@ function App() {
     const handleOnClick = (event:React.MouseEvent<HTMLDivElement> ) => {
         // CLEAN UP
         if(!selected){
-            setPosition({})
+            setPosition({left:0,top:0})
         }
         if (event.target instanceof Element){
             setSelected(event.target.id);

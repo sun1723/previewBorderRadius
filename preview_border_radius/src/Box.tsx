@@ -1,5 +1,4 @@
 import styles from './Box.module.scss';
-import {useBox} from "./talons/useBox";
 
 export interface Position {
     x: number;
@@ -22,19 +21,13 @@ export interface boxProps {
 }
 
 const Box = (props: boxProps) => {
-    const talonProps = useBox(props);
     const {
-        // handleMouseMove,
-        handleMouseUp,
-        handleMouseDown,
         position,
-        zIndex,
         side,
-        container,
         id,
         selected,
         startPos
-    } = talonProps;
+    } = props;
 
     const isSelected = selected === side;
     return (
@@ -42,14 +35,10 @@ const Box = (props: boxProps) => {
                 style={{
                     left: isSelected && position.left ? `${position.left}px` : `${startPos.left}px`,
                     top:  isSelected && position.top ? `${position.top}px` : `${startPos.top}px`,
-                    zIndex: `${zIndex}`,
                     border: isSelected? '5px solid black':''
                 }}
                 id={id}
                 className={styles.box}
-                onMouseDown={handleMouseDown}
-                onMouseUp={handleMouseUp}
-                // onMouseMove={handleMouseMove}
             />
     );
 }
