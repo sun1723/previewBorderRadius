@@ -6,9 +6,12 @@ function App() {
     const [selected, setSelected] = useState('');
     const [position, setPosition] = useState({});
     const [isDragging, setIsDragging] = useState<boolean>(false);
+    const [leftPos, setLeftPos] = useState({left: 0,top: 10});
+    const [rightPos, setRightPos] = useState({left: 400,top: 10});
+    const [topPos, setTopPos] = useState({left: 10,top: 0});
+    const [bottomPos, setBottomPos] = useState({left: 10,top: 400});
 
     const handleMouseMove = (event: React.MouseEvent<HTMLDivElement>) => {
-        console.log(event.currentTarget,selected)
         if (isDragging && selected) {
             // const {width, height} = event.currentTarget.getBoundingClientRect();
             const {
@@ -40,6 +43,10 @@ function App() {
     }
 
     const handleOnClick = (event:React.MouseEvent<HTMLDivElement> ) => {
+        // CLEAN UP
+        if(!selected){
+            setPosition({})
+        }
         if (event.target instanceof Element){
             setSelected(event.target.id);
             setIsDragging(true);
@@ -47,18 +54,27 @@ function App() {
     }
 
     const handleMouseUp = () => {
-        setPosition({});
-        setIsDragging(false)
+        if(selected==='left'){
+            setLeftPos(position)
+        }else if(selected === 'right'){
+            setRightPos(position)
+        }else if(selected === 'top'){
+            setTopPos(position)
+        }else if(selected === 'bottom'){
+            setBottomPos(position)
+        }
+        setIsDragging(false);
+        setSelected('')
     }
 
   return (
     <div className={styles.App}>
       <header className={styles.App_header}>
           <div className={styles.container} onMouseMove={handleMouseMove} onMouseDown={handleOnClick} onMouseUp={handleMouseUp}>
-              <Box startPos={{left: 0,top: 10}} side="left" id='left' setSelected={setSelected} selected={selected} position={position}/>
-              <Box startPos={{left: 400,top: 10}} side="right" id='right' setSelected={setSelected} selected={selected} position={position}/>
-              <Box  startPos={{left: 10,top: 0}} side="top" id='top' setSelected={setSelected} selected={selected} position={position}/>
-              <Box startPos={{left: 10,top: 400}} side="bottom" id='bottom' setSelected={setSelected} selected={selected} position={position}/>
+              <Box startPos={leftPos} side="left" id='left' setSelected={setSelected} selected={selected} position={position}/>
+              <Box startPos={rightPos} side="right" id='right' setSelected={setSelected} selected={selected} position={position}/>
+              <Box  startPos={topPos} side="top" id='top' setSelected={setSelected} selected={selected} position={position}/>
+              <Box startPos={bottomPos} side="bottom" id='bottom' setSelected={setSelected} selected={selected} position={position}/>
           </div>
             <div>
                 <input/>

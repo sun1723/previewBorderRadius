@@ -3,7 +3,7 @@ import {boxProps, Position} from "../Box";
 
 export const useBox =  (props: boxProps) => {
     const {side,setSelected,selected} = props;
-    console.log("selected: ",selected,'side:',side)
+    // console.log("selected: ",selected,'side:',side)
     const boxStyle = side === 'left'  ? {x: -10,y: 20} : side === 'right' ? {x: 390, y: 20 } : side === 'top' ? {x: 100, y: -10 }: {x: 100, y: 390 }
 
     const [isDragging, setIsDragging] = useState<boolean>(false);
