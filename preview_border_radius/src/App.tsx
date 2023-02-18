@@ -5,10 +5,11 @@ import Box from "./Box";
 function App() {
     const [selected, setSelected] = useState('');
     const [position, setPosition] = useState({});
+    const [isDragging, setIsDragging] = useState<boolean>(false);
 
     const handleMouseMove = (event: React.MouseEvent<HTMLDivElement>) => {
         console.log(event.currentTarget,selected)
-        if (selected) {
+        if (isDragging && selected) {
             // const {width, height} = event.currentTarget.getBoundingClientRect();
             const {
                 left: containerLeft,
@@ -40,12 +41,14 @@ function App() {
 
     const handleOnClick = (event:React.MouseEvent<HTMLDivElement> ) => {
         if (event.target instanceof Element){
-            setSelected(event.target.id)
+            setSelected(event.target.id);
+            setIsDragging(true);
         }
     }
 
     const handleMouseUp = () => {
-        setPosition({})
+        setPosition({});
+        setIsDragging(false)
     }
 
   return (
