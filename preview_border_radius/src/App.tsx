@@ -24,20 +24,25 @@ function App() {
             if (!containerWidth || !containerHeight) {
                 return;
             }
-            const maxLeft = containerWidth + 10;
-            const maxTop = containerHeight + 10;
-            let left = event.clientX - containerLeft + 10;
-            let top = event.clientY - containerTop + 20;
+            const maxLeft = containerWidth -2;
+            const maxTop = containerHeight - 2;
+            let left = event.clientX - containerLeft < 0 ? 0: event.clientX - containerLeft ;
+            let top = event.clientY - containerTop < 0 ? 0: event.clientY - containerTop ;
             left = Math.min(left,maxLeft);
             top = Math.min(top,maxTop);
+
             if(selected==='left'){
                 setPosition({left:0, top})
+                setLeftPos({left:0, top})
             }else if(selected === 'right'){
                 setPosition({left:maxLeft,top})
+                setRightPos({left:maxLeft,top})
             }else if(selected === 'top'){
                 setPosition({left,top:0})
+                setTopPos({left,top:0})
             }else if(selected === 'bottom'){
                 setPosition({left,top:maxTop})
+                setBottomPos({left,top:maxTop})
             }
         }
     }
