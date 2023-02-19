@@ -101,7 +101,7 @@ function App() {
               <Box startPos={bottomPos} side="bottom" id='bottom' setSelected={setSelected} selected={selected} position={position}/>
           </div>
             <div className={styles.inputWrapper}>
-                <input ref={inputRef} className={styles.input} value={`border-radius:${Math.round(topPos.left/4)}% ${Math.round(100-topPos.left/4)}% ${Math.round(100 - bottomPos.left/4)}% ${Math.round((bottomPos.left)/4)}% / ${Math.round((leftPos.top)/4)}% ${Math.round(rightPos.top/4)}%  ${Math.round(100-rightPos.top/4)}% ${Math.round(100-leftPos.top/4)}%`}/>
+                <input readOnly ref={inputRef} className={styles.input} value={`border-radius:${Math.round(topPos.left/4)}% ${Math.round(100-topPos.left/4)}% ${Math.round(100 - bottomPos.left/4)}% ${Math.round((bottomPos.left)/4)}% / ${Math.round((leftPos.top)/4)}% ${Math.round(rightPos.top/4)}%  ${Math.round(100-rightPos.top/4)}% ${Math.round(100-leftPos.top/4)}%`}/>
                 <button onClick={handleCopyText}>Copy to ClipBoard</button>
             </div>
       </header>
