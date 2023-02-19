@@ -10,6 +10,7 @@ function App() {
     const [rightPos, setRightPos] = useState({left: 400,top: 10});
     const [topPos, setTopPos] = useState({left: 10,top: 0});
     const [bottomPos, setBottomPos] = useState({left: 10,top: 400});
+    const [lastSelected,setLastSelected] = useState('');
 
     const handleMouseMove = (event: React.MouseEvent<HTMLDivElement>) => {
         if (isDragging && selected) {
@@ -63,20 +64,21 @@ function App() {
             setBottomPos(position)
         }
         setIsDragging(false);
+        setLastSelected(selected);
         setSelected('')
     }
 
   return (
-    <div className={styles.App}>
-      <header className={styles.header}>
-          <div className={styles.container} onMouseMove={handleMouseMove} onMouseDown={handleOnClick} onMouseUp={handleMouseUp} style={{borderRadius:`${topPos.left}px ${rightPos.top}px ${bottomPos.left}px ${leftPos.top}px` }}>
+    <div className={styles.App} onMouseUp={handleMouseUp}>
+      <header className={styles.header} >
+          <div className={styles.container} onMouseMove={handleMouseMove} onMouseDown={handleOnClick}  style={{borderRadius:`${Math.ceil(topPos.left/4)}% ${Math.floor(100-topPos.left/4)}% ${Math.floor(100 - bottomPos.left/4)}% ${Math.ceil((bottomPos.left)/4)}% / ${Math.ceil((leftPos.top)/4)}% ${Math.floor(rightPos.top/4)}%  ${Math.floor(100-rightPos.top/4)}% ${Math.ceil(100-leftPos.top/4)}%` }}>
               <Box startPos={leftPos} side="left" id='left' setSelected={setSelected} selected={selected} position={position}/>
               <Box startPos={rightPos} side="right" id='right' setSelected={setSelected} selected={selected} position={position}/>
               <Box  startPos={topPos} side="top" id='top' setSelected={setSelected} selected={selected} position={position}/>
               <Box startPos={bottomPos} side="bottom" id='bottom' setSelected={setSelected} selected={selected} position={position}/>
           </div>
-            <div>
-                <input/>
+            <div className={styles.inputWrapper}>
+                <input className={styles.input} value={`border-radius:${Math.round(topPos.left/4)}% ${Math.round(100-topPos.left/4)}% ${Math.round(100 - bottomPos.left/4)}% ${Math.round((bottomPos.left)/4)}% / ${Math.round((leftPos.top)/4)}% ${Math.round(rightPos.top/4)}%  ${Math.round(100-rightPos.top/4)}% ${Math.round(100-leftPos.top/4)}%`}/>
                 <button>Copy to ClipBoard</button>
             </div>
       </header>
