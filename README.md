@@ -20,5 +20,11 @@ The border-radius property can have multiple values changed. Preview how the sha
 ## Tool
 https://crxjs.dev/vite-plugin/
 
-# Screenshots:
+## Screenshots:
 ![preview border radius](https://i.imgur.com/VI7gGUo.gif)
+
+## Note
+### How to view it as google extension
+- Run `npm run dev`
+- Go to `chrome://extensions/` and turn on `Developer mode`
+- upload `dist` folder from the project
